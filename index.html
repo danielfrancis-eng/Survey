@@ -11,35 +11,49 @@
     .card { border:1px solid rgba(255,255,255,.12); background: rgba(255,255,255,.05); border-radius: 16px; padding: 18px; }
     button { cursor:pointer; border-radius: 12px; padding: 10px 12px; border:1px solid rgba(255,255,255,.18); background: rgba(255,255,255,.06); color:#e8edf7; font-weight:600; }
     button:hover { background: rgba(255,255,255,.09); }
-    code { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
+    code, pre { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
     .muted { opacity:.75; font-size:14px; line-height:1.4; }
     .row { display:flex; gap:10px; flex-wrap:wrap; margin-top:12px; }
+    pre { margin: 10px 0 0; padding: 12px; border-radius: 12px; background: rgba(0,0,0,.25); border:1px solid rgba(255,255,255,.10); overflow:auto; }
+    .pill { display:inline-block; padding: 4px 8px; border-radius: 999px; border:1px solid rgba(255,255,255,.14); background: rgba(255,255,255,.06); font-size: 12px; }
   </style>
 </head>
 
 <body>
   <div class="wrap">
-    <h1>Intercom EU Test</h1>
-    <p class="muted">This page exists only to verify Intercom Messenger + surveys. Anonymous visitors (no login).</p>
+    <h1>Intercom Test</h1>
+    <p class="muted">Minimal page to verify Intercom Messenger + surveys. Anonymous visitors (no login).</p>
 
     <div class="card">
-      <div class="muted">Try these buttons after the Messenger loads:</div>
+      <div class="muted">Actions:</div>
       <div class="row">
         <button onclick="window.Intercom && Intercom('show')">Open Messenger</button>
         <button onclick="window.Intercom && Intercom('hide')">Hide Messenger</button>
         <button onclick="window.Intercom && Intercom('showMessages')">Show Messages</button>
       </div>
+
+      <div class="row" style="margin-top:14px;">
+        <span class="pill" id="ic-status">Intercom: loading…</span>
+        <span class="pill" id="ic-api">api_base: —</span>
+      </div>
+
       <p class="muted" style="margin-top:12px;">
         Console quick check: <code>window.Intercom && Intercom('show')</code>
       </p>
+
+      <pre id="ic-debug" class="muted">intercomSettings: (waiting…)</pre>
     </div>
   </div>
 
-  <!-- Intercom (EU hosted) — anonymous visitors -->
+  <!-- Intercom — anonymous visitors -->
   <script>
+    // IMPORTANT:
+    // Your network screenshot showed ping + launcher_settings returning 404.
+    // That typically means api_base region mismatch.
+    // This value is for US-hosted workspaces:
     window.intercomSettings = {
       app_id: "w2lma4ma",
-      api_base: "https://api-iam.eu.intercom.io"
+      api_base: "https://api-iam.intercom.io"
     };
   </script>
 
@@ -75,8 +89,6 @@
 
   <!-- Optional lifecycle helpers (only needed in SPAs / logout flows) -->
   <script>
-    // For anonymous pages, you usually don't need these,
-    // but leaving them here makes testing easy.
     function intercomBoot() {
       if (window.Intercom) Intercom('boot', window.intercomSettings);
     }
@@ -86,6 +98,24 @@
     function intercomShutdown() {
       if (window.Intercom) Intercom('shutdown');
     }
+
+    // Tiny UI debug to confirm load
+    (function poll() {
+      var status = document.getElementById('ic-status');
+      var api = document.getElementById('ic-api');
+      var dbg = document.getElementById('ic-debug');
+
+      api.textContent = "api_base: " + (window.intercomSettings && window.intercomSettings.api_base);
+
+      if (typeof window.Intercom === "function") {
+        status.textContent = "Intercom: loaded ✅";
+        dbg.textContent = "intercomSettings:\n" + JSON.stringify(window.intercomSettings, null, 2);
+      } else {
+        status.textContent = "Intercom: loading…";
+        dbg.textContent = "intercomSettings:\n" + JSON.stringify(window.intercomSettings, null, 2);
+        setTimeout(poll, 300);
+      }
+    })();
   </script>
 </body>
 </html>
