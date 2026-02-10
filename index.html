@@ -1,0 +1,855 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>LedgerPilot — Finance SaaS for Revenue & Cashflow</title>
+  <meta name="description" content="A modern finance SaaS landing page mockup (demo). Revenue, cashflow, forecasting, and reporting in one place." />
+  <style>
+    :root{
+      --bg: #0b1220;
+      --card: rgba(255,255,255,.06);
+      --card2: rgba(255,255,255,.10);
+      --text: #e8edf7;
+      --muted: rgba(232,237,247,.72);
+      --line: rgba(255,255,255,.12);
+      --accent: #7c5cff;
+      --accent2: #2ee59d;
+      --warn: #ffcc66;
+      --shadow: 0 18px 60px rgba(0,0,0,.45);
+      --radius: 18px;
+      --max: 1120px;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+<script>
+  window.intercomSettings = {
+    api_base: "https://api-iam.intercom.io",
+    app_id: "w2lma4ma",
+  };
+</script>
+
+
+<script>
+  // We pre-filled your app ID in the widget URL: 'https://widget.intercom.io/widget/w2lma4ma'
+  (function(){var w=window;var ic=w.Intercom;if(typeof ic==="function"){ic('reattach_activator');ic('update',w.intercomSettings);}else{var d=document;var i=function(){i.c(arguments);};i.q=[];i.c=function(args){i.q.push(args);};w.Intercom=i;var l=function(){var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://widget.intercom.io/widget/w2lma4ma';var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);};if(document.readyState==='complete'){l();}else if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})();
+</script>
+    *{ box-sizing: border-box; }
+    html,body{ height:100%; }
+    body{
+      margin:0;
+      font-family: var(--sans);
+      color: var(--text);
+      background:
+        radial-gradient(900px 500px at 20% 10%, rgba(124,92,255,.35), transparent 55%),
+        radial-gradient(900px 500px at 75% 20%, rgba(46,229,157,.22), transparent 55%),
+        radial-gradient(700px 420px at 50% 100%, rgba(255,204,102,.10), transparent 60%),
+        linear-gradient(180deg, #070b14 0%, #0b1220 55%, #070b14 100%);
+      overflow-x:hidden;
+    }
+    a{ color:inherit; text-decoration:none; }
+    .container{ max-width: var(--max); margin: 0 auto; padding: 0 20px; }
+
+    /* Top nav */
+    .nav{
+      position:sticky; top:0; z-index:20;
+      backdrop-filter: blur(10px);
+      background: rgba(7,11,20,.55);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav-inner{
+      display:flex; align-items:center; justify-content:space-between;
+      padding: 14px 0;
+      gap: 16px;
+    }
+    .brand{
+      display:flex; align-items:center; gap: 10px;
+      font-weight: 700; letter-spacing:.2px;
+    }
+    .logo{
+      width: 38px; height: 38px; border-radius: 12px;
+      background:
+        radial-gradient(10px 10px at 30% 30%, rgba(255,255,255,.55), transparent 60%),
+        linear-gradient(135deg, var(--accent) 0%, #00c2ff 55%, var(--accent2) 100%);
+      box-shadow: 0 10px 22px rgba(124,92,255,.25);
+      border: 1px solid rgba(255,255,255,.18);
+    }
+    .nav-links{
+      display:flex; align-items:center; gap: 18px;
+      font-size: 14px;
+      color: var(--muted);
+    }
+    .nav-links a:hover{ color: var(--text); }
+    .nav-cta{
+      display:flex; align-items:center; gap: 10px;
+    }
+
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      padding: 11px 14px;
+      border-radius: 12px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.04);
+      color: var(--text);
+      font-weight: 600;
+      font-size: 14px;
+      transition: transform .08s ease, background .2s ease, border-color .2s ease;
+      cursor:pointer;
+      white-space:nowrap;
+    }
+    .btn:hover{ background: rgba(255,255,255,.07); border-color: rgba(255,255,255,.18); }
+    .btn:active{ transform: translateY(1px); }
+    .btn.primary{
+      border-color: rgba(124,92,255,.55);
+      background: linear-gradient(135deg, rgba(124,92,255,.95), rgba(46,229,157,.75));
+      box-shadow: 0 18px 50px rgba(124,92,255,.22);
+      color: #071018;
+    }
+    .btn.primary:hover{ filter: brightness(1.05); }
+    .chip{
+      display:inline-flex; align-items:center; gap:8px;
+      border:1px solid var(--line);
+      border-radius: 999px;
+      padding: 7px 11px;
+      font-size: 13px;
+      color: var(--muted);
+      background: rgba(255,255,255,.03);
+    }
+    .dot{
+      width: 8px; height: 8px; border-radius: 999px;
+      background: var(--accent2);
+      box-shadow: 0 0 0 4px rgba(46,229,157,.15);
+    }
+
+    /* Hero */
+    .hero{
+      padding: 56px 0 18px;
+    }
+    .hero-grid{
+      display:grid;
+      grid-template-columns: 1.08fr .92fr;
+      gap: 26px;
+      align-items: start;
+    }
+    h1{
+      font-size: clamp(34px, 4.6vw, 54px);
+      line-height: 1.02;
+      margin: 18px 0 14px;
+      letter-spacing: -0.8px;
+    }
+    .lead{
+      font-size: 16px;
+      color: var(--muted);
+      line-height: 1.55;
+      margin: 0 0 18px;
+      max-width: 54ch;
+    }
+    .hero-actions{
+      display:flex; gap: 10px; align-items:center; flex-wrap:wrap;
+      margin: 18px 0 10px;
+    }
+    .subnote{
+      font-size: 13px;
+      color: rgba(232,237,247,.58);
+      margin-top: 8px;
+    }
+    .trust{
+      display:flex; align-items:center; gap: 14px; flex-wrap:wrap;
+      margin-top: 18px;
+      color: rgba(232,237,247,.62);
+      font-size: 13px;
+    }
+    .trust .pill{
+      border: 1px dashed rgba(255,255,255,.18);
+      border-radius: 999px;
+      padding: 8px 10px;
+      background: rgba(255,255,255,.02);
+    }
+
+    /* Mock dashboard card */
+    .panel{
+      border-radius: var(--radius);
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.03));
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      position: relative;
+    }
+    .panel::before{
+      content:"";
+      position:absolute; inset:-2px;
+      background: radial-gradient(700px 240px at 20% 20%, rgba(124,92,255,.22), transparent 60%),
+                  radial-gradient(700px 240px at 80% 10%, rgba(46,229,157,.16), transparent 60%);
+      pointer-events:none;
+      opacity:.9;
+    }
+    .panel-inner{ position:relative; padding: 16px; }
+    .panel-top{
+      display:flex; align-items:center; justify-content:space-between;
+      gap: 10px;
+      padding: 12px 14px;
+      border-bottom: 1px solid rgba(255,255,255,.10);
+      background: rgba(7,11,20,.35);
+    }
+    .panel-top strong{ font-size: 13px; letter-spacing:.2px; }
+    .panel-top span{ font-size: 12px; color: rgba(232,237,247,.62); font-family: var(--mono); }
+    .kpis{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 12px;
+    }
+    .kpi{
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.04);
+      border-radius: 16px;
+      padding: 12px 12px;
+    }
+    .kpi .label{ font-size: 12px; color: rgba(232,237,247,.62); }
+    .kpi .value{ font-size: 20px; font-weight: 750; margin-top: 6px; }
+    .kpi .delta{ font-size: 12px; color: rgba(46,229,157,.85); margin-top: 4px; }
+    .kpi .delta.neg{ color: rgba(255,120,120,.9); }
+
+    .chart{
+      margin-top: 12px;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      border-radius: 16px;
+      padding: 12px;
+    }
+    .chart-head{
+      display:flex; align-items:center; justify-content:space-between;
+      margin-bottom: 10px;
+      gap: 10px;
+    }
+    .chart-head .title{ font-size: 13px; font-weight: 650; }
+    .chart-head .meta{ font-size: 12px; color: rgba(232,237,247,.62); }
+    .spark{
+      width: 100%;
+      height: 130px;
+      border-radius: 12px;
+      background:
+        linear-gradient(180deg, rgba(124,92,255,.18), transparent 70%),
+        repeating-linear-gradient(90deg, rgba(255,255,255,.08) 0 1px, transparent 1px 44px),
+        repeating-linear-gradient(180deg, rgba(255,255,255,.06) 0 1px, transparent 1px 28px);
+      position: relative;
+      overflow:hidden;
+    }
+    .spark svg{
+      position:absolute; inset: 0;
+      width:100%; height:100%;
+      opacity:.95;
+    }
+
+    .table{
+      margin-top: 12px;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      border-radius: 16px;
+      overflow:hidden;
+    }
+    .row{
+      display:grid;
+      grid-template-columns: 1.2fr .8fr .7fr;
+      gap: 12px;
+      padding: 11px 12px;
+      border-top: 1px solid rgba(255,255,255,.08);
+      font-size: 13px;
+      align-items:center;
+    }
+    .row:first-child{
+      border-top: 0;
+      background: rgba(255,255,255,.04);
+      font-size: 12px;
+      color: rgba(232,237,247,.62);
+      text-transform: uppercase;
+      letter-spacing: .08em;
+    }
+    .badge{
+      display:inline-flex; align-items:center; justify-content:center;
+      padding: 4px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.04);
+      font-size: 12px;
+      color: rgba(232,237,247,.75);
+      width: fit-content;
+    }
+    .badge.ok{ border-color: rgba(46,229,157,.35); background: rgba(46,229,157,.10); color: rgba(46,229,157,.95);}
+    .badge.warn{ border-color: rgba(255,204,102,.35); background: rgba(255,204,102,.10); color: rgba(255,204,102,.95);}
+
+    /* Sections */
+    section{ padding: 44px 0; }
+    .section-title{
+      display:flex; align-items:flex-end; justify-content:space-between;
+      gap: 18px; flex-wrap:wrap;
+      margin-bottom: 18px;
+    }
+    .section-title h2{
+      margin:0;
+      font-size: 26px;
+      letter-spacing: -0.4px;
+    }
+    .section-title p{
+      margin:0;
+      color: var(--muted);
+      max-width: 60ch;
+      line-height: 1.5;
+      font-size: 14px;
+    }
+    .cards{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+    .card{
+      border-radius: var(--radius);
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.04);
+      padding: 16px;
+      box-shadow: 0 18px 60px rgba(0,0,0,.18);
+    }
+    .card h3{
+      margin: 10px 0 6px;
+      font-size: 16px;
+      letter-spacing: -0.2px;
+    }
+    .card p{
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.5;
+    }
+    .icon{
+      width: 40px; height: 40px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.14);
+      background:
+        radial-gradient(10px 10px at 30% 30%, rgba(255,255,255,.55), transparent 60%),
+        linear-gradient(135deg, rgba(124,92,255,.55), rgba(46,229,157,.35));
+      display:flex; align-items:center; justify-content:center;
+      font-family: var(--mono);
+      font-weight: 700;
+      color: rgba(7,11,20,.85);
+    }
+
+    /* Pricing */
+    .pricing{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      align-items: stretch;
+    }
+    .price{
+      position: relative;
+      padding: 18px;
+    }
+    .price.featured{
+      border-color: rgba(124,92,255,.35);
+      background: linear-gradient(180deg, rgba(124,92,255,.16), rgba(255,255,255,.03));
+      box-shadow: 0 24px 80px rgba(124,92,255,.10);
+    }
+    .ribbon{
+      position:absolute; top: 14px; right: 14px;
+      font-size: 12px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(46,229,157,.14);
+      border: 1px solid rgba(46,229,157,.32);
+      color: rgba(46,229,157,.95);
+    }
+    .price .plan{ font-weight: 750; font-size: 16px; }
+    .price .desc{ margin-top: 6px; color: var(--muted); font-size: 13px; line-height: 1.45; }
+    .price .amount{
+      margin-top: 14px;
+      font-size: 34px;
+      font-weight: 800;
+      letter-spacing: -0.6px;
+    }
+    .price .amount span{
+      font-size: 13px;
+      color: rgba(232,237,247,.62);
+      font-weight: 600;
+      margin-left: 6px;
+    }
+    .list{
+      margin: 14px 0 16px;
+      padding: 0;
+      list-style: none;
+      display:flex; flex-direction:column; gap: 10px;
+      color: rgba(232,237,247,.78);
+      font-size: 13px;
+    }
+    .list li{
+      display:flex; gap: 10px; align-items:flex-start;
+    }
+    .check{
+      width: 18px; height: 18px; border-radius: 6px;
+      border: 1px solid rgba(255,255,255,.18);
+      background: rgba(46,229,157,.12);
+      flex: 0 0 auto;
+      display:flex; align-items:center; justify-content:center;
+      color: rgba(46,229,157,.95);
+      font-family: var(--mono);
+      font-size: 12px;
+      margin-top: 1px;
+    }
+
+    /* Testimonials */
+    .quotes{
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 14px;
+      align-items: start;
+    }
+    blockquote{
+      margin: 0;
+      padding: 18px;
+      border-radius: var(--radius);
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.04);
+      color: rgba(232,237,247,.85);
+      line-height: 1.55;
+      box-shadow: 0 18px 60px rgba(0,0,0,.14);
+    }
+    .who{
+      margin-top: 12px;
+      display:flex; align-items:center; gap: 10px;
+      color: rgba(232,237,247,.70);
+      font-size: 13px;
+    }
+    .avatar{
+      width: 34px; height: 34px; border-radius: 12px;
+      border: 1px solid rgba(255,255,255,.16);
+      background: linear-gradient(135deg, rgba(255,255,255,.22), rgba(255,255,255,.06));
+      display:flex; align-items:center; justify-content:center;
+      font-family: var(--mono);
+      color: rgba(232,237,247,.85);
+    }
+
+    /* CTA */
+    .cta{
+      padding: 28px;
+      border-radius: calc(var(--radius) + 6px);
+      border: 1px solid rgba(255,255,255,.12);
+      background:
+        radial-gradient(700px 220px at 20% 20%, rgba(124,92,255,.22), transparent 60%),
+        radial-gradient(700px 220px at 80% 20%, rgba(46,229,157,.18), transparent 60%),
+        rgba(255,255,255,.04);
+      box-shadow: var(--shadow);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 16px;
+      flex-wrap:wrap;
+    }
+    .cta h3{ margin:0; font-size: 20px; letter-spacing: -0.2px; }
+    .cta p{ margin: 6px 0 0; color: var(--muted); font-size: 14px; line-height:1.5; max-width: 62ch; }
+
+    footer{
+      padding: 26px 0 40px;
+      color: rgba(232,237,247,.60);
+      font-size: 13px;
+      border-top: 1px solid rgba(255,255,255,.10);
+    }
+    .foot{
+      display:flex; align-items:center; justify-content:space-between;
+      gap: 12px; flex-wrap:wrap;
+    }
+    .foot a{ color: rgba(232,237,247,.68); }
+    .foot a:hover{ color: var(--text); }
+
+    /* Responsive */
+    @media (max-width: 980px){
+      .hero-grid{ grid-template-columns: 1fr; }
+      .cards{ grid-template-columns: 1fr; }
+      .pricing{ grid-template-columns: 1fr; }
+      .quotes{ grid-template-columns: 1fr; }
+      .kpis{ grid-template-columns: 1fr; }
+      .nav-links{ display:none; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- NAV -->
+  <div class="nav">
+    <div class="container">
+      <div class="nav-inner">
+        <div class="brand">
+          <div class="logo" aria-hidden="true"></div>
+          <div>
+            LedgerPilot
+            <div style="font-size:12px;color:rgba(232,237,247,.58);font-weight:600;">Finance OS for SaaS</div>
+          </div>
+        </div>
+
+        <div class="nav-links" aria-label="Primary navigation">
+          <a href="#features">Features</a>
+          <a href="#security">Security</a>
+          <a href="#pricing">Pricing</a>
+          <a href="#customers">Customers</a>
+          <a href="#faq">FAQ</a>
+        </div>
+
+        <div class="nav-cta">
+          <a class="btn" href="#pricing">Log in</a>
+          <a class="btn primary" href="#cta">Start free</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="container">
+      <div class="hero-grid">
+        <div>
+          <div class="chip">
+            <span class="dot" aria-hidden="true"></span>
+            Live cashflow, revenue, and forecasting in one place
+          </div>
+
+          <h1>Stop guessing your runway.<br/>Track revenue, cashflow, and forecasts—instantly.</h1>
+
+          <p class="lead">
+            LedgerPilot is a fake finance SaaS landing page mockup. It connects billing, bank feeds, and CRM
+            to give you clean MRR, AR aging, cashflow forecasts, and board-ready reports.
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn primary" href="#cta">Start free trial</a>
+            <a class="btn" href="#features">View product</a>
+            <span class="subnote">No credit card • Cancel anytime</span>
+          </div>
+
+          <div class="trust">
+            <div class="pill">SOC 2-ready controls</div>
+            <div class="pill">GDPR-friendly</div>
+            <div class="pill">Role-based access</div>
+            <div class="pill">Audit logs</div>
+          </div>
+        </div>
+
+        <div class="panel" role="img" aria-label="Mock finance dashboard">
+          <div class="panel-top">
+            <strong>Finance Dashboard</strong>
+            <span>Updated: 09:12</span>
+          </div>
+
+          <div class="panel-inner">
+            <div class="kpis">
+              <div class="kpi">
+                <div class="label">Monthly Recurring Revenue</div>
+                <div class="value">€128,420</div>
+                <div class="delta">+4.1% MoM</div>
+              </div>
+              <div class="kpi">
+                <div class="label">Net Revenue Retention</div>
+                <div class="value">116%</div>
+                <div class="delta">+1.8pp QoQ</div>
+              </div>
+              <div class="kpi">
+                <div class="label">Burn Multiple</div>
+                <div class="value">1.7x</div>
+                <div class="delta neg">-0.2x MoM</div>
+              </div>
+            </div>
+
+            <div class="chart">
+              <div class="chart-head">
+                <div class="title">Cashflow forecast</div>
+                <div class="meta">Next 12 weeks</div>
+              </div>
+              <div class="spark">
+                <!-- Decorative inline SVG chart -->
+                <svg viewBox="0 0 600 130" preserveAspectRatio="none" aria-hidden="true">
+                  <defs>
+                    <linearGradient id="g" x1="0" x2="0" y1="0" y2="1">
+                      <stop offset="0" stop-color="rgba(46,229,157,.65)"/>
+                      <stop offset="1" stop-color="rgba(46,229,157,0)"/>
+                    </linearGradient>
+                    <linearGradient id="p" x1="0" x2="0" y1="0" y2="1">
+                      <stop offset="0" stop-color="rgba(124,92,255,.6)"/>
+                      <stop offset="1" stop-color="rgba(124,92,255,0)"/>
+                    </linearGradient>
+                  </defs>
+
+                  <path d="M0,95 C60,70 90,90 140,72 C190,55 220,84 275,62 C335,36 360,68 410,50 C470,26 505,54 560,36 C580,30 592,28 600,26 L600,130 L0,130 Z"
+                        fill="url(#g)" />
+                  <path d="M0,100 C70,84 110,105 160,88 C210,72 240,98 295,80 C360,58 395,86 450,70 C500,54 530,72 600,52"
+                        fill="none" stroke="rgba(46,229,157,.95)" stroke-width="3" />
+
+                  <path d="M0,112 C70,110 115,98 165,104 C220,112 260,90 310,96 C370,104 400,80 450,88 C510,98 545,78 600,82 L600,130 L0,130 Z"
+                        fill="url(#p)" opacity=".9"/>
+                  <path d="M0,112 C70,110 115,98 165,104 C220,112 260,90 310,96 C370,104 400,80 450,88 C510,98 545,78 600,82"
+                        fill="none" stroke="rgba(124,92,255,.95)" stroke-width="3" />
+                </svg>
+              </div>
+            </div>
+
+            <div class="table" aria-label="Open invoices table (mock)">
+              <div class="row">
+                <div>Customer</div><div>Amount</div><div>Status</div>
+              </div>
+              <div class="row">
+                <div>Northwind Labs</div><div>€12,800</div><div><span class="badge ok">Paid</span></div>
+              </div>
+              <div class="row">
+                <div>Acme Ventures</div><div>€7,450</div><div><span class="badge warn">Due in 5d</span></div>
+              </div>
+              <div class="row">
+                <div>Orchid Systems</div><div>€18,200</div><div><span class="badge warn">Overdue</span></div>
+              </div>
+            </div>
+
+            <div style="display:flex;gap:10px;margin-top:12px;flex-wrap:wrap;">
+              <span class="badge">Connected: Stripe</span>
+              <span class="badge">Connected: HSBC</span>
+              <span class="badge">Connected: HubSpot</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- FEATURES -->
+  <section id="features">
+    <div class="container">
+      <div class="section-title">
+        <div>
+          <h2>Everything finance teams need (minus the spreadsheet chaos)</h2>
+          <p>Automate revenue reporting, forecasting, and collections. Keep leadership aligned with one source of truth.</p>
+        </div>
+      </div>
+
+      <div class="cards">
+        <div class="card">
+          <div class="icon">MRR</div>
+          <h3>Revenue analytics</h3>
+          <p>Clean MRR/ARR, churn, expansion, and NRR with cohort views and drilldowns per customer.</p>
+        </div>
+        <div class="card">
+          <div class="icon">CF</div>
+          <h3>Cashflow forecasting</h3>
+          <p>12-week rolling forecast powered by bank feeds, invoices, payroll schedules, and runway alerts.</p>
+        </div>
+        <div class="card">
+          <div class="icon">AR</div>
+          <h3>AR & collections</h3>
+          <p>Track aging, automate reminders, and route escalations to CSMs when invoices go overdue.</p>
+        </div>
+        <div class="card">
+          <div class="icon">FX</div>
+          <h3>Multi-currency</h3>
+          <p>Aggregate across currencies with configurable FX rates and reporting currency per entity.</p>
+        </div>
+        <div class="card">
+          <div class="icon">API</div>
+          <h3>Integrations</h3>
+          <p>Connect Stripe, bank feeds, CRMs, and data warehouses. Export to CSV, BI tools, or API.</p>
+        </div>
+        <div class="card">
+          <div class="icon">AI</div>
+          <h3>AI insights</h3>
+          <p>Spot anomalies (spikes, drops, churn risk) and get suggested actions for finance + CS.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECURITY -->
+  <section id="security">
+    <div class="container">
+      <div class="section-title">
+        <div>
+          <h2>Security & compliance built in</h2>
+          <p>Least-privilege access, audit trails, and encryption. Designed for teams handling sensitive financial data.</p>
+        </div>
+      </div>
+
+      <div class="cards">
+        <div class="card">
+          <div class="icon">RB</div>
+          <h3>Role-based access</h3>
+          <p>Limit dashboards and exports by role, entity, and team. No more “everyone sees everything”.</p>
+        </div>
+        <div class="card">
+          <div class="icon">🔒</div>
+          <h3>Encryption</h3>
+          <p>Encrypt data in transit and at rest. Rotate keys and manage access with SSO + SCIM.</p>
+        </div>
+        <div class="card">
+          <div class="icon">LOG</div>
+          <h3>Audit logs</h3>
+          <p>Track who viewed or changed what. Export logs for reviews and internal controls.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section id="pricing">
+    <div class="container">
+      <div class="section-title">
+        <div>
+          <h2>Pricing that scales with you</h2>
+          <p>Start small, upgrade when you’re ready. (All plans are fake—this is a mock landing page.)</p>
+        </div>
+      </div>
+
+      <div class="pricing">
+        <div class="card price">
+          <div class="plan">Starter</div>
+          <div class="desc">For early-stage teams who want clean revenue metrics.</div>
+          <div class="amount">€49<span>/mo</span></div>
+          <ul class="list">
+            <li><span class="check">✓</span><span>MRR/ARR dashboard</span></li>
+            <li><span class="check">✓</span><span>1 bank connection</span></li>
+            <li><span class="check">✓</span><span>Basic forecasting</span></li>
+            <li><span class="check">✓</span><span>Email support</span></li>
+          </ul>
+          <a class="btn" href="#cta" style="width:100%;">Choose Starter</a>
+        </div>
+
+        <div class="card price featured">
+          <div class="ribbon">Most popular</div>
+          <div class="plan">Growth</div>
+          <div class="desc">For SaaS teams that need forecasting + AR workflows.</div>
+          <div class="amount">€149<span>/mo</span></div>
+          <ul class="list">
+            <li><span class="check">✓</span><span>Everything in Starter</span></li>
+            <li><span class="check">✓</span><span>Unlimited bank connections</span></li>
+            <li><span class="check">✓</span><span>AR aging + reminders</span></li>
+            <li><span class="check">✓</span><span>Integrations (Stripe/CRM)</span></li>
+            <li><span class="check">✓</span><span>Team roles + audit logs</span></li>
+          </ul>
+          <a class="btn primary" href="#cta" style="width:100%;">Start Growth trial</a>
+        </div>
+
+        <div class="card price">
+          <div class="plan">Enterprise</div>
+          <div class="desc">For multi-entity reporting and advanced compliance.</div>
+          <div class="amount">€499<span>/mo</span></div>
+          <ul class="list">
+            <li><span class="check">✓</span><span>Multi-entity consolidation</span></li>
+            <li><span class="check">✓</span><span>SSO, SCIM, custom roles</span></li>
+            <li><span class="check">✓</span><span>Custom data retention</span></li>
+            <li><span class="check">✓</span><span>Dedicated support</span></li>
+          </ul>
+          <a class="btn" href="#cta" style="width:100%;">Talk to sales</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CUSTOMERS / TESTIMONIALS -->
+  <section id="customers">
+    <div class="container">
+      <div class="section-title">
+        <div>
+          <h2>Loved by finance, trusted by operators</h2>
+          <p>Short quotes + logos make the page feel real. Swap these for your real ICP and proof points.</p>
+        </div>
+      </div>
+
+      <div class="quotes">
+        <blockquote>
+          “We went from three spreadsheets and two bank portals to one dashboard. Forecast meetings dropped from 90 minutes to 20.”
+          <div class="who">
+            <div class="avatar">JM</div>
+            <div><strong>J. Martin</strong> · Head of Finance, Northwind Labs</div>
+          </div>
+        </blockquote>
+
+        <blockquote>
+          “The AR reminders + CSM handoffs paid for the tool in the first month. Overdue invoices fell by 38%.”
+          <div class="who">
+            <div class="avatar">SR</div>
+            <div><strong>S. Rivera</strong> · COO, Orchid Systems</div>
+          </div>
+        </blockquote>
+      </div>
+
+      <div style="margin-top:14px;display:flex;gap:10px;flex-wrap:wrap;">
+        <span class="badge">Northwind</span>
+        <span class="badge">Orchid</span>
+        <span class="badge">Acme</span>
+        <span class="badge">Nimbus</span>
+        <span class="badge">Pinecone</span>
+        <span class="badge">Voyager</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq">
+    <div class="container">
+      <div class="section-title">
+        <div>
+          <h2>FAQ</h2>
+          <p>These accordion-style FAQs are simple HTML. Add JS later if you want animation.</p>
+        </div>
+      </div>
+
+      <div class="cards" style="grid-template-columns: 1fr;">
+        <div class="card">
+          <h3>Is this a real product?</h3>
+          <p>Nope — it’s a fake landing page HTML mockup. Replace the copy, metrics, and branding with your own.</p>
+        </div>
+        <div class="card">
+          <h3>What integrations does LedgerPilot support?</h3>
+          <p>In this mock: Stripe, bank feeds, and CRMs. In a real build, list exact integrations and their limits.</p>
+        </div>
+        <div class="card">
+          <h3>Can I export reports for board decks?</h3>
+          <p>Yes (in spirit). Add PDF export or “copy-ready” tables if you want this to feel more believable.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section id="cta">
+    <div class="container">
+      <div class="cta">
+        <div>
+          <h3>Get a single source of truth for revenue + cashflow</h3>
+          <p>Start a free trial, connect your billing + bank feed, and see your runway and forecast in minutes.</p>
+        </div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;">
+          <a class="btn primary" href="#">Start free trial</a>
+          <a class="btn" href="#">Book a demo</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="foot">
+        <div style="display:flex;align-items:center;gap:10px;">
+          <div class="logo" aria-hidden="true" style="width:28px;height:28px;border-radius:10px;"></div>
+          <div>© <span id="year"></span> LedgerPilot (demo)</div>
+        </div>
+        <div style="display:flex;gap:14px;flex-wrap:wrap;">
+          <a href="#features">Features</a>
+          <a href="#pricing">Pricing</a>
+          <a href="#security">Security</a>
+          <a href="#faq">FAQ</a>
+        </div>
+      </div>
+      <div style="margin-top:10px;color:rgba(232,237,247,.45);">
+        This is a static HTML mockup for demo purposes. No real service is provided.
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // tiny nicety: set current year
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
